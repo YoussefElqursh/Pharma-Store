@@ -1,0 +1,1533 @@
+
+window.onload = function() {
+  // Build a system
+  let url = window.location.search.match(/url=([^&]+)/);
+  if (url && url.length > 1) {
+    url = decodeURIComponent(url[1]);
+  } else {
+    url = window.location.origin;
+  }
+  let options = {
+  "swaggerDoc": {
+    "openapi": "3.0.0",
+    "paths": {
+      "/": {
+        "get": {
+          "operationId": "AppController_getHello",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/admin": {
+        "post": {
+          "operationId": "AdminController_create",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateAdminDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Admin"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        },
+        "get": {
+          "operationId": "AdminController_findAll",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/admin/{id}": {
+        "get": {
+          "operationId": "AdminController_findOne",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        },
+        "patch": {
+          "operationId": "AdminController_update",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateAdminDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        },
+        "delete": {
+          "operationId": "AdminController_remove",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/store": {
+        "post": {
+          "operationId": "StoreController_create",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateStoreDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Store"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Store"
+          ]
+        },
+        "get": {
+          "operationId": "StoreController_findAll",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Store"
+          ]
+        }
+      },
+      "/store/{id}": {
+        "get": {
+          "operationId": "StoreController_findOne",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Store"
+          ]
+        },
+        "patch": {
+          "operationId": "StoreController_update",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateStoreDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Store"
+          ]
+        },
+        "delete": {
+          "operationId": "StoreController_remove",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Store"
+          ]
+        }
+      },
+      "/pharmacy": {
+        "post": {
+          "operationId": "PharmacyController_create",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatePharmacyDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Pharmacy"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Pharmacy"
+          ]
+        },
+        "get": {
+          "operationId": "PharmacyController_findAll",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Pharmacy"
+          ]
+        }
+      },
+      "/pharmacy/{id}": {
+        "get": {
+          "operationId": "PharmacyController_findOne",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Pharmacy"
+          ]
+        },
+        "patch": {
+          "operationId": "PharmacyController_update",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdatePharmacyDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Pharmacy"
+          ]
+        },
+        "delete": {
+          "operationId": "PharmacyController_remove",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Pharmacy"
+          ]
+        }
+      },
+      "/pharmacist": {
+        "post": {
+          "operationId": "PharmacistController_create",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatePharmacistDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Pharmacist"
+          ]
+        },
+        "get": {
+          "operationId": "PharmacistController_findAll",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Pharmacist"
+          ]
+        }
+      },
+      "/pharmacist/{id}": {
+        "get": {
+          "operationId": "PharmacistController_findOne",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Pharmacist"
+          ]
+        },
+        "patch": {
+          "operationId": "PharmacistController_update",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdatePharmacistDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Pharmacist"
+          ]
+        },
+        "delete": {
+          "operationId": "PharmacistController_remove",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Pharmacist"
+          ]
+        }
+      },
+      "/auth/login": {
+        "post": {
+          "operationId": "AuthController_login",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Authentication"
+          ]
+        }
+      },
+      "/auth/register/admin": {
+        "post": {
+          "operationId": "AuthController_adminRegister",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateAdminDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Authentication"
+          ]
+        }
+      },
+      "/auth/register/store": {
+        "post": {
+          "operationId": "AuthController_storeRegister",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateStoreDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Authentication"
+          ]
+        }
+      },
+      "/auth/register/pharmacy": {
+        "post": {
+          "operationId": "AuthController_pharmacyRegister",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatePharmacyDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Authentication"
+          ]
+        }
+      },
+      "/auth/refresh": {
+        "post": {
+          "operationId": "AuthController_refresh",
+          "parameters": [],
+          "responses": {
+            "201": {
+              "description": ""
+            }
+          },
+          "tags": [
+            "Authentication"
+          ]
+        }
+      },
+      "/store-owner": {
+        "post": {
+          "operationId": "StoreOwnerController_create",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateStoreOwnerDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Store Owner"
+          ]
+        },
+        "get": {
+          "operationId": "StoreOwnerController_findAll",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Store Owner"
+          ]
+        }
+      },
+      "/store-owner/{id}": {
+        "get": {
+          "operationId": "StoreOwnerController_findOne",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Store Owner"
+          ]
+        },
+        "patch": {
+          "operationId": "StoreOwnerController_update",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateStoreOwnerDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Store Owner"
+          ]
+        },
+        "delete": {
+          "operationId": "StoreOwnerController_remove",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "Store Owner"
+          ]
+        }
+      }
+    },
+    "info": {
+      "title": "PhStore API",
+      "description": "The Pharma Store API",
+      "version": "1.0",
+      "contact": {}
+    },
+    "tags": [],
+    "servers": [],
+    "components": {
+      "schemas": {
+        "CreateAdminDto": {
+          "type": "object",
+          "properties": {
+            "firstName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "lastName": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 255
+            },
+            "email": {
+              "type": "string"
+            },
+            "phoneNumber": {
+              "type": "string"
+            },
+            "userName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "firstName",
+            "lastName",
+            "email",
+            "phoneNumber",
+            "userName",
+            "password"
+          ]
+        },
+        "Admin": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "phoneNumber": {
+              "type": "string"
+            },
+            "userName": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "firstName",
+            "lastName",
+            "email",
+            "phoneNumber",
+            "userName",
+            "password"
+          ]
+        },
+        "UpdateAdminDto": {
+          "type": "object",
+          "properties": {
+            "firstName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "lastName": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 255
+            },
+            "email": {
+              "type": "string"
+            },
+            "phoneNumber": {
+              "type": "string"
+            },
+            "userName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        },
+        "CreateStoreDto": {
+          "type": "object",
+          "properties": {
+            "storeName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30
+            },
+            "country": {
+              "type": "string"
+            },
+            "governorate": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "contactNumber": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "licenseNumber": {
+              "type": "number"
+            },
+            "commercialRegister": {
+              "type": "string"
+            },
+            "userName": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 30
+            },
+            "password": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "storeName",
+            "country",
+            "governorate",
+            "region",
+            "address",
+            "contactNumber",
+            "licenseNumber",
+            "commercialRegister",
+            "userName",
+            "password",
+            "isActive"
+          ]
+        },
+        "Store": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "storeName": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "governorate": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "contactNumber": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "licenseNumber": {
+              "type": "number"
+            },
+            "commercialRegister": {
+              "type": "string"
+            },
+            "userName": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "id",
+            "storeName",
+            "country",
+            "governorate",
+            "region",
+            "address",
+            "contactNumber",
+            "licenseNumber",
+            "commercialRegister",
+            "userName",
+            "password",
+            "isActive"
+          ]
+        },
+        "UpdateStoreDto": {
+          "type": "object",
+          "properties": {
+            "storeName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30
+            },
+            "country": {
+              "type": "string"
+            },
+            "governorate": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "contactNumber": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "licenseNumber": {
+              "type": "number"
+            },
+            "commercialRegister": {
+              "type": "string"
+            },
+            "userName": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 30
+            },
+            "password": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "object"
+            }
+          }
+        },
+        "CreatePharmacistDto": {
+          "type": "object",
+          "properties": {
+            "licenseNumber": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "phoneNumber": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "licenseNumber"
+          ]
+        },
+        "CreatePharmacyDto": {
+          "type": "object",
+          "properties": {
+            "pharmacyName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30
+            },
+            "country": {
+              "type": "string"
+            },
+            "governorate": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "contactNumber": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "pharmacyPhoto": {
+              "type": "string",
+              "description": "Should be file"
+            },
+            "commercialRegister": {
+              "type": "string",
+              "description": "Should be file"
+            },
+            "userName": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 30
+            },
+            "password": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "object"
+            },
+            "pharmacist": {
+              "$ref": "#/components/schemas/CreatePharmacistDto"
+            },
+            "licenseNumber": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "pharmacyName",
+            "country",
+            "governorate",
+            "region",
+            "address",
+            "contactNumber",
+            "pharmacyPhoto",
+            "commercialRegister",
+            "userName",
+            "password",
+            "isActive",
+            "pharmacist",
+            "licenseNumber"
+          ]
+        },
+        "Pharmacy": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "pharmacyName": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "governorate": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "contactNumber": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "licenseNumber": {
+              "type": "number"
+            },
+            "commercialRegister": {
+              "type": "string"
+            },
+            "pharmacyPhoto": {
+              "type": "string"
+            },
+            "userName": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "object"
+            },
+            "pharmacist": {
+              "$ref": "#/components/schemas/Pharmacist"
+            }
+          },
+          "required": [
+            "id",
+            "pharmacyName",
+            "country",
+            "governorate",
+            "region",
+            "address",
+            "contactNumber",
+            "licenseNumber",
+            "commercialRegister",
+            "pharmacyPhoto",
+            "userName",
+            "password",
+            "isActive",
+            "pharmacist"
+          ]
+        },
+        "Pharmacist": {
+          "type": "object",
+          "properties": {
+            "licenseNumber": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "phoneNumber": {
+              "type": "string"
+            },
+            "pharmacies": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Pharmacy"
+              }
+            }
+          },
+          "required": [
+            "licenseNumber",
+            "firstName",
+            "lastName",
+            "email",
+            "phoneNumber",
+            "pharmacies"
+          ]
+        },
+        "UpdatePharmacyDto": {
+          "type": "object",
+          "properties": {
+            "pharmacyName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 30
+            },
+            "country": {
+              "type": "string"
+            },
+            "governorate": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "contactNumber": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "pharmacyPhoto": {
+              "type": "string",
+              "description": "Should be file"
+            },
+            "commercialRegister": {
+              "type": "string",
+              "description": "Should be file"
+            },
+            "userName": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 30
+            },
+            "password": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "object"
+            },
+            "pharmacist": {
+              "$ref": "#/components/schemas/CreatePharmacistDto"
+            },
+            "licenseNumber": {
+              "type": "number"
+            }
+          }
+        },
+        "UpdatePharmacistDto": {
+          "type": "object",
+          "properties": {
+            "licenseNumber": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "phoneNumber": {
+              "type": "string"
+            }
+          }
+        },
+        "LoginDto": {
+          "type": "object",
+          "properties": {
+            "userName": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "userType": {
+              "type": "string",
+              "enum": [
+                "admin",
+                "pharmacy",
+                "store"
+              ]
+            }
+          },
+          "required": [
+            "userName",
+            "password",
+            "userType"
+          ]
+        },
+        "CreateStoreOwnerDto": {
+          "type": "object",
+          "properties": {
+            "lastName": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "phoneNumber": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string"
+            }
+          }
+        },
+        "UpdateStoreOwnerDto": {
+          "type": "object",
+          "properties": {
+            "lastName": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "phoneNumber": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "customOptions": {}
+};
+  url = options.swaggerUrl || url
+  let urls = options.swaggerUrls
+  let customOptions = options.customOptions
+  let spec1 = options.swaggerDoc
+  let swaggerOptions = {
+    spec: spec1,
+    url: url,
+    urls: urls,
+    dom_id: '#swagger-ui',
+    deepLinking: true,
+    presets: [
+      SwaggerUIBundle.presets.apis,
+      SwaggerUIStandalonePreset
+    ],
+    plugins: [
+      SwaggerUIBundle.plugins.DownloadUrl
+    ],
+    layout: "StandaloneLayout"
+  }
+  for (let attrname in customOptions) {
+    swaggerOptions[attrname] = customOptions[attrname];
+  }
+  let ui = SwaggerUIBundle(swaggerOptions)
+
+  if (customOptions.initOAuth) {
+    ui.initOAuth(customOptions.initOAuth)
+  }
+
+  if (customOptions.authAction) {
+    ui.authActions.authorize(customOptions.authAction)
+  }
+  
+  window.ui = ui
+}
